@@ -1,7 +1,11 @@
-// import {  } from './styled';
+import { Text } from '@chakra-ui/react';
 
 const Home = () => {
-  return <></>;
+  return (
+    <>
+      <Text>Home page</Text>
+    </>
+  );
 };
 
 export default Home;
