@@ -4,9 +4,10 @@ import { NotificationsLogo, UnlikeLogo, CommentLogo } from '../../assets/constan
 
 interface PostFooterProps {
   username: string;
+  isProfilePage: boolean;
 }
 
-const PostFooter = ({ username }: PostFooterProps) => {
+const PostFooter = ({ username, isProfilePage }: PostFooterProps) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(1000);
 
@@ -21,7 +22,7 @@ const PostFooter = ({ username }: PostFooterProps) => {
   };
 
   return (
-    <Box mb={10}>
+    <Box mb={10} mt={'auto'}>
       <Flex alignItems={'center'} gap={4} w={'full'} pt={0} mb={2} mt={4}>
         <Box onClick={handleLike} cursor={'pointer'} fontSize={18}>
           {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
@@ -33,15 +34,19 @@ const PostFooter = ({ username }: PostFooterProps) => {
       <Text fontWeight={600} fontSize={'sm'}>
         {likes} likes
       </Text>
-      <Text fontSize="sm" fontWeight={700}>
-        {username}
-        <Text as="span" fontWeight={400}>
-          Feelling good
+
+      {!isProfilePage && (
+        <Text fontSize="sm" fontWeight={700}>
+          {username}
+          <Text as="span" fontWeight={400}>
+            Feelling good
+          </Text>
+          <Text fontSize="sm" color="gray">
+            View all 1,000 comments
+          </Text>
         </Text>
-        <Text fontSize="sm" color="gray">
-          View all 1,000 comments
-        </Text>
-      </Text>
+      )}
+
       <Flex alignItems={'center'} gap={2} justifyContent={'space-between'} w={'full'}>
         <InputGroup>
           <Input variant={'flushed'} placeholder={'Add a comment...'} fontSize={14} />
